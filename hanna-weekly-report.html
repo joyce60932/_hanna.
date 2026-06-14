@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HANNA 機構週報 · 帶你看對方向</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE6D8;
+    --gold: #B8892A;
+    --gold-light: #D4A843;
+    --gold-pale: #F0DFA8;
+    --brown: #3D2B1A;
+    --brown-mid: #6B4C30;
+    --white: #FFFFFF;
+    --shadow: rgba(61,43,26,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--brown);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1.5px solid var(--gold);
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-logo {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--brown);
+    letter-spacing: 0.05em;
+  }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Noto Sans TC', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--cream);
+    padding: 48px 24px 40px;
+    border-bottom: 1px solid rgba(184,137,42,0.2);
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.3;
+    color: var(--brown);
+    margin-bottom: 8px;
+  }
+  .hero-title span {
+    color: var(--gold);
+  }
+  .hero-divider {
+    width: 48px;
+    height: 3px;
+    background: var(--gold);
+    margin: 20px 0;
+    border-radius: 2px;
+  }
+  .hero-body {
+    font-size: 15px;
+    color: var(--brown-mid);
+    line-height: 2;
+  }
+  .hero-body p {
+    margin-bottom: 4px;
+  }
+  .hero-body strong {
+    color: var(--brown);
+    font-weight: 700;
+  }
+
+  /* ── PERSONA BUTTON ── */
+  .persona-btn {
+    margin: 28px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 24px;
+    padding: 16px 20px;
+    font-family: 'Noto Sans TC', sans-serif;
+    cursor: default;
+    letter-spacing: 0.03em;
+    box-shadow: 0 5px 0 #8B6520;
+  }
+
+  .persona-btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+  }
+  .persona-btn .btn-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 900;
+    display: block;
+    line-height: 1.3;
+  }
+  .persona-btn .btn-tags {
+    font-size: 12px;
+    opacity: 0.88;
+    display: block;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* ── UPDATE NOTICE ── */
+  .update-notice {
+    margin-top: 20px;
+    background: var(--cream-dark);
+    border: 1.5px solid var(--gold);
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: var(--brown-mid);
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 40px 24px;
+  }
+  .section + .section {
+    border-top: 1px solid rgba(184,137,42,0.15);
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--brown);
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+  .section-title span {
+    color: var(--gold);
+  }
+
+  .section-body {
+    font-size: 15px;
+    color: var(--brown-mid);
+    line-height: 2;
+  }
+  .section-body p { margin-bottom: 6px; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--white);
+    border: 2px solid var(--brown);
+    border-radius: 20px;
+    padding: 22px 20px;
+    margin-bottom: 16px;
+    box-shadow: 4px 4px 0 var(--brown);
+  }
+  .card-num {
+    width: 32px;
+    height: 32px;
+    background: var(--gold);
+    color: var(--white);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .card-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--brown);
+  }
+  .card-body {
+    font-size: 14px;
+    color: var(--brown-mid);
+    line-height: 1.8;
+  }
+  .card-highlight {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ── PREVIEW ACCORDION ── */
+  .accordion-item {
+    border-bottom: 1px solid rgba(184,137,42,0.25);
+    overflow: hidden;
+  }
+  .accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--brown);
+    font-family: 'Noto Sans TC', sans-serif;
+    cursor: pointer;
+    text-align: left;
+  }
+  .accordion-trigger .plus {
+    font-size: 18px;
+    color: var(--gold);
+    font-weight: 400;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .accordion-trigger.open .plus {
+    transform: rotate(45deg);
+  }
+  .accordion-content {
+    display: none;
+    padding: 0 0 16px 28px;
+  }
+  .accordion-content.open {
+    display: block;
+  }
+  .accordion-content .report-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .accordion-content p {
+    font-size: 14px;
+    color: var(--brown-mid);
+    line-height: 1.8;
+    margin-bottom: 6px;
+  }
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+  .bullet-list li {
+    font-size: 14px;
+    color: var(--brown-mid);
+    line-height: 1.8;
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .bullet-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .bullet-list li strong {
+    color: var(--brown);
+    font-weight: 700;
+  }
+
+  /* ── VS BLOCK ── */
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .vs-card {
+    border-radius: 16px;
+    padding: 18px 16px;
+  }
+  .vs-card.bad {
+    background: #FFF5F5;
+    border: 1.5px solid #FFBABA;
+  }
+  .vs-card.good {
+    background: #F3FAF0;
+    border: 1.5px solid #A8D9A0;
+  }
+  .vs-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .vs-card.bad .vs-label { color: #C0392B; }
+  .vs-card.good .vs-label { color: #27AE60; }
+  .vs-item {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    color: var(--brown-mid);
+  }
+
+  /* ── LOCKED LIST ── */
+  .lock-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .lock-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(184,137,42,0.15);
+    font-size: 15px;
+    color: var(--brown-mid);
+  }
+  .lock-list li:last-child { border-bottom: none; }
+  .lock-icon { font-size: 18px; }
+
+  /* ── QUOTE CARD ── */
+  .quote-card {
+    background: var(--white);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 16px 16px 0;
+    padding: 20px 20px;
+    margin: 20px 0;
+    box-shadow: 3px 3px 0 var(--cream-dark);
+  }
+  .quote-card p {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--brown);
+    line-height: 1.6;
+  }
+  .quote-card span {
+    color: var(--gold);
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    background: var(--white);
+    border: 2px solid var(--brown);
+    border-radius: 24px;
+    padding: 32px 24px;
+    box-shadow: 5px 5px 0 var(--brown);
+    text-align: center;
+    margin: 0 24px;
+  }
+  .cta-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .cta-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--brown);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .cta-sub {
+    font-size: 14px;
+    color: var(--brown-mid);
+    margin-bottom: 24px;
+    line-height: 1.8;
+  }
+  .cta-btn {
+    display: block;
+    width: 100%;
+    background: var(--gold);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Noto Sans TC', sans-serif;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 0 #8B6520;
+    text-decoration: none;
+  }
+  .cta-note {
+    font-size: 12px;
+    color: var(--brown-mid);
+    margin-top: 12px;
+  }
+
+  /* ── CLOSING QUOTE ── */
+  .closing {
+    text-align: center;
+    padding: 48px 24px 32px;
+  }
+  .closing-line1 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .closing-line2 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--brown);
+    margin-bottom: 20px;
+  }
+  .closing-sig {
+    font-size: 13px;
+    color: var(--brown-mid);
+    letter-spacing: 0.1em;
+  }
+  .closing-sig strong {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--cream-dark);
+    color: var(--brown-mid);
+    text-align: center;
+    padding: 20px 24px;
+    font-size: 12px;
+    line-height: 1.8;
+    border-top: 1px solid rgba(184,137,42,0.2);
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">💸 HANNA · 機構週報</div>
+  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">立即取得週報</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">HANNA WEEKLY · 市場方向判讀</div>
+  <h1 class="hero-title">看對方向的人<br><span>都在看什麼？</span></h1>
+  <div class="hero-divider"></div>
+  <div class="hero-body">
+    <p>市場每天都在波動。</p>
+    <p>有人看新聞，有人看價格，</p>
+    <p>有人看別人的意見。</p>
+    <p>但真正重要的，從來不是價格。</p>
+    <p><strong>而是方向。</strong></p>
+  </div>
+  <!-- 個人介紹按鈕 -->
+  <div class="persona-btn">
+    <div class="persona-btn-text">
+      <span class="btn-name">Hanna｜幣圈資深教官</span>
+      <span class="btn-tags">靠幣圈買房的媽媽｜韭菜救星</span>
+    </div>
+  </div>
+</section>
+
+<!-- 本週搶先看 -->
+<section class="section">
+  <div class="section-eyebrow">⚡ 本週機構報告搶先看</div>
+  <h2 class="section-title">0606 <span>特別更新</span></h2>
+
+  <div class="accordion-item">
+    <button class="accordion-trigger open" onclick="toggleAccordion(this)">
+      <span class="plus">+</span>0606 市場分析報告
+    </button>
+    <div class="accordion-content open">
+      <div class="report-badge">⚡ 特別更新 0606：還看空嗎？大錯特錯！</div>
+      <p><strong>Bitcoin Today：$61,078</strong></p>
+      <ul class="bullet-list">
+        <li>92% 的山寨幣沒有創新低，市場根本不是崩盤形態</li>
+        <li>演算法在軌，Elliott Wave 路線圖在軌，耐心等待 Damascus Gate 完成</li>
+        <li>銅黃金比率已於 <strong>2025年12月17日翻轉</strong>，全球大週期正式改變</li>
+        <li>BTC Dominance 58%，6 年前相同情況後山寨幣展開超過 12 個月漲幅</li>
+        <li>牛市已啟動 6 個月，大多數人還在等「牛市開始」</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="plus">+</span>0604 市場分析報告
+    </button>
+    <div class="accordion-content"></div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="plus">+</span>0527 市場分析報告
+    </button>
+    <div class="accordion-content"></div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="plus">+</span>0512 市場分析報告
+    </button>
+    <div class="accordion-content"></div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="plus">+</span>0507 機構買幣邏輯分享
+    </button>
+    <div class="accordion-content"></div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-trigger" onclick="toggleAccordion(this)">
+      <span class="plus">+</span>0506 小幣漲幅速覽表
+    </button>
+    <div class="accordion-content"></div>
+  </div>
+  <div class="update-notice">
+    ℹ️ 幣聖課官網不定期更新，最新機構資訊
+  </div>
+</section>
+
+<!-- BTC 關鍵位置 -->
+<section class="section">
+  <div class="section-eyebrow">📍 BTC 接近關鍵位置</div>
+  <h2 class="section-title">總結給小白的<span>關鍵座標</span></h2>
+
+  <div class="card">
+    <div class="card-body">
+      <ul class="bullet-list">
+        <li>BTC 現在 $61,078，底部目標約 <strong>$60,000</strong>（F2 尾聲，極度接近）</li>
+        <li>山寨幣週期底部：<strong>2025年10月8日</strong>；轉向確認：<strong>2025年12月17日</strong></li>
+        <li>BTC Dominance 58% 楔形觸頂，資金準備流向山寨幣</li>
+        <li>6 個月真實複利成績：<strong class="card-highlight">+1,007.3%</strong>，牛市早已在進行</li>
+        <li>策略：HOLD 長線 + 耐心等 Point D 確認後加碼山寨幣</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="quote-card">
+    <p>📍 牛市可能比你想的<span>更早開始</span></p>
+  </div>
+  <div class="section-body">
+    <p>很多人還在等：「牛市開始再進場」</p>
+    <p>但市場往往不會等你準備好。</p>
+  </div>
+</section>
+
+<!-- VS 對比 -->
+<section class="section">
+  <div class="section-eyebrow">🔍 為什麼大部分人總是追高殺低？</div>
+  <h2 class="section-title">散戶 vs <span>機構</span>看的不一樣</h2>
+  <div class="vs-grid">
+    <div class="vs-card bad">
+      <div class="vs-label">❌ 散戶看</div>
+      <div class="vs-item">❌ 價格</div>
+      <div class="vs-item">❌ 新聞</div>
+      <div class="vs-item">❌ 情緒</div>
+      <div class="vs-item">❌ 月相</div>
+      <div class="vs-item">❌ 別人的看法</div>
+    </div>
+    <div class="vs-card good">
+      <div class="vs-label">✅ 機構看</div>
+      <div class="vs-item">✅ 資金流向</div>
+      <div class="vs-item">✅ 市場結構</div>
+      <div class="vs-item">✅ 週期位置</div>
+      <div class="vs-item">✅ 大方向</div>
+    </div>
+  </div>
+</section>
+
+<!-- 完整版週報 -->
+<section class="section">
+  <div class="section-eyebrow">🔒 完整版週報還有什麼？</div>
+  <h2 class="section-title">學員專屬<span>深度分析</span></h2>
+  <ul class="lock-list">
+    <li><span class="lock-icon">🔒</span> BTC 市場劇本分析</li>
+    <li><span class="lock-icon">🔒</span> 機構資金流向追蹤</li>
+    <li><span class="lock-icon">🔒</span> 山寨幣輪動觀察</li>
+    <li><span class="lock-icon">🔒</span> BTC.D 關鍵轉折分析</li>
+    <li><span class="lock-icon">🔒</span> 本週風險提醒</li>
+    <li><span class="lock-icon">🔒</span> 牛熊週期追蹤</li>
+    <li><span class="lock-icon">🔒</span> 機構觀點整理</li>
+  </ul>
+</section>
+
+<!-- 為什麼每週都要看 -->
+<section class="section">
+  <div class="section-eyebrow">💡 為什麼學員每週都要看？</div>
+  <div class="section-body">
+    <p>因為市場永遠都會波動。</p>
+    <p>但<strong>判斷力</strong>，</p>
+    <p>會決定你是在恐慌，</p>
+    <p>還是在等待機會。</p>
+  </div>
+
+  <div class="card" style="margin-top: 24px;">
+    <div class="card-title">🎓 學員專屬福利</div>
+    <div class="card-body">
+      幣聖機構週報目前僅提供學員閱讀。<br>
+      透過每週更新的市場分析，<br>
+      協助學員建立自己的判斷能力，<br>
+      而不是盲目跟單。
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div style="padding: 8px 0 40px;" id="cta">
+  <div class="cta-section">
+    <div class="cta-eyebrow">HOW TO GET IT</div>
+    <h2 class="cta-title">如何取得<br>完整週報？</h2>
+    <p class="cta-sub">加入學習體系後，<br>即可開通學員權限。<br>👇 加入官方 LINE，了解學習流程與開通方式</p>
+    <a href="https://lin.ee/quwVtCS" class="cta-btn">👉 加入 Hanna 官方 LINE</a>
+    <p class="cta-note">點擊後即可與我聯繫，了解完整課程內容</p>
+  </div>
+</div>
+
+<!-- 結尾金句 -->
+<div class="closing">
+  <div class="closing-line1">價格會騙人</div>
+  <div class="closing-line2">方向不會。</div>
+  <div class="closing-sig"><strong>HANNA.</strong><br>帶你看對方向</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>@_hannapang · 用生命影響生命</p>
+  <p style="margin-top:6px;">＊以上為功能介紹與個人經驗分享，非投資建議，投資有風險，利率依平台公告為準。</p>
+</footer>
+
+<script>
+  function toggleAccordion(btn) {
+    const content = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.accordion-trigger').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+    // Open if was closed
+    if (!isOpen) {
+      btn.classList.add('open');
+      content.classList.add('open');
+    }
+  }
+</script>
+</body>
+</html>
